@@ -1,21 +1,20 @@
-import type { Metadata } from "next"
-import { Header } from "@/components/layout/header"
-import { Footer } from "@/components/layout/footer"
-import { WhatsAppButton } from "@/components/layout/whatsapp-button"
-import { ServiceCard } from "@/components/services/service-card"
-import { BookingSummary } from "@/components/services/booking-summary"
-import { services } from "@/lib/services-data"
+import type { Metadata } from "next";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
+import { ServiceCard } from "@/components/services/service-card";
+import { BookingSummary } from "@/components/services/booking-summary";
+import { services } from "@/lib/services-data";
 
 export const metadata: Metadata = {
   title: "Our Services | Hygiapro",
   description:
     "Browse our premium cleaning services including residential, commercial, post-construction, and specialized cleaning. Book online today.",
-}
+};
 
 export default function ServicesPage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
       <main className="flex-1 pt-20">
         {/* Hero Section */}
         <section className="bg-foreground py-24 text-primary-foreground lg:py-32">
@@ -28,8 +27,9 @@ export default function ServicesPage() {
                 Curated cleaning experiences
               </h1>
               <p className="text-lg leading-relaxed text-primary-foreground/70">
-                Select from our range of premium cleaning services. Combine multiple services and book them together for
-                a comprehensive clean.
+                Select from our range of premium cleaning services. Combine
+                multiple services and book them together for a comprehensive
+                clean.
               </p>
             </div>
           </div>
@@ -56,8 +56,6 @@ export default function ServicesPage() {
           </div>
         </section>
       </main>
-      <Footer />
-      <WhatsAppButton />
     </div>
-  )
+  );
 }
