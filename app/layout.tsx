@@ -2,8 +2,12 @@ import type React from "react";
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, Playfair_Display, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 
 const _dmSans = DM_Sans({
   subsets: ["latin"],
@@ -42,8 +46,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased">
+        <NextTopLoader
+          color="#ff9911"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={200}
+        />
+        <Header />
+
         {children}
+        <Footer />
+
         <Toaster position="top-center" richColors />
+        <WhatsAppButton />
+
         <Analytics />
       </body>
     </html>
