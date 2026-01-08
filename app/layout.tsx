@@ -20,9 +20,9 @@ const _playfairDisplay = Playfair_Display({
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Hygiapro | Premium Cleaning Services",
+  title: "Hygiapro | Professional Cleaning Services",
   description:
-    "Experience the art of cleanliness. Premium cleaning services for discerning homes and businesses. Book online, pay securely.",
+    "Experience the art of cleanliness. Professional cleaning services for discerning homes and businesses. Book online, pay securely.",
   keywords: [
     "premium cleaning",
     "luxury cleaning service",

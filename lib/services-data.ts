@@ -68,7 +68,7 @@ export const services: Service[] = [
     ],
     startingPrice: 75000,
     priceUnit: "per project",
-    image: "/services/post-construction.jpg",
+    image: "/post-construction.jpg",
     category: "specialized",
   },
   {
@@ -88,7 +88,7 @@ export const services: Service[] = [
     ],
     startingPrice: 20000,
     priceUnit: "per turnover",
-    image: "/services/airbnb-cleaning.jpg",
+    image: "/airbnb-cleaning.png",
     category: "residential",
   },
   {
@@ -108,7 +108,7 @@ export const services: Service[] = [
     ],
     startingPrice: 15000,
     priceUnit: "per item",
-    image: "/services/carpet-cleaning.jpg",
+    image: "/carpet-cleaning.jpg",
     category: "specialized",
   },
   {
@@ -128,7 +128,7 @@ export const services: Service[] = [
     ],
     startingPrice: 100000,
     priceUnit: "per event",
-    image: "/services/event-cleaning.jpg",
+    image: "/event-cleaning.jpg",
     category: "commercial",
   },
   {
@@ -148,7 +148,7 @@ export const services: Service[] = [
     ],
     startingPrice: 80000,
     priceUnit: "per session",
-    image: "/services/school-cleaning.jpg",
+    image: "/school-cleaning.jpg",
     category: "commercial",
   },
   {
@@ -168,7 +168,7 @@ export const services: Service[] = [
     ],
     startingPrice: 120000,
     priceUnit: "per session",
-    image: "/services/hospital-cleaning.jpg",
+    image: "/hospital-cleaning.jpg",
     category: "commercial",
   },
   {
@@ -188,7 +188,7 @@ export const services: Service[] = [
     ],
     startingPrice: 60000,
     priceUnit: "per session",
-    image: "/services/church-cleaning.jpg",
+    image: "/church-cleaning.jpg",
     category: "commercial",
   },
 ];

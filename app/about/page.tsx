@@ -1,11 +1,7 @@
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Award, Heart, Shield, Users } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { WhatsAppButton } from "@/components/layout/whatsapp-button";
-import { Button } from "@/components/ui/button";
-import { Shield, Heart, Users, Award } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us | Hygiapro",
@@ -41,10 +37,10 @@ const values = [
 ];
 
 const stats = [
-  { value: "500+", label: "Happy Clients" },
-  { value: "5+", label: "Years Experience" },
-  { value: "50+", label: "Trained Staff" },
-  { value: "98%", label: "Satisfaction Rate" },
+  { value: "50+", label: "Happy Clients" },
+  { value: "2+", label: "Years Experience" },
+  { value: "20+", label: "Trained Staff" },
+  { value: "80%", label: "Satisfaction Rate" },
 ];
 
 export default function AboutPage() {

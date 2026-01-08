@@ -56,7 +56,7 @@ export function WhyChooseUs() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="absolute -bottom-8 -right-8 bg-accent p-8 text-accent-foreground lg:-right-12">
-              <p className="font-serif text-5xl font-medium">500+</p>
+              <p className="font-serif text-5xl font-medium">50+</p>
               <p className="mt-2 text-sm uppercase tracking-wider">
                 Satisfied Clients
               </p>
