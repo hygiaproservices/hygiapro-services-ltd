@@ -13,6 +13,8 @@ interface ServicePageProps {
   params: Promise<{ slug: string }>;
 }
 
+export const dynamicParams = true; // Allow dynamic routes not in generateStaticParams
+
 export async function generateStaticParams() {
   return services.map((service) => ({
     slug: service.id,

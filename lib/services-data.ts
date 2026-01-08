@@ -1,13 +1,13 @@
 export interface Service {
-  id: string
-  name: string
-  shortDescription: string
-  description: string
-  includes: string[]
-  startingPrice: number
-  priceUnit: string
-  image: string
-  category: "residential" | "commercial" | "specialized"
+  id: string;
+  name: string;
+  shortDescription: string;
+  description: string;
+  includes: string[];
+  startingPrice: number;
+  priceUnit: string;
+  image: string;
+  category: "residential" | "commercial" | "specialized";
 }
 
 export const services: Service[] = [
@@ -28,7 +28,7 @@ export const services: Service[] = [
     ],
     startingPrice: 25000,
     priceUnit: "per session",
-    image: "/services/residential-cleaning.jpg",
+    image: "/residential-cleaning.jpg",
     category: "residential",
   },
   {
@@ -48,7 +48,7 @@ export const services: Service[] = [
     ],
     startingPrice: 50000,
     priceUnit: "per session",
-    image: "/services/office-cleaning.jpg",
+    image: "/office-cleaning.jpg",
     category: "commercial",
   },
   {
@@ -191,14 +191,16 @@ export const services: Service[] = [
     image: "/services/church-cleaning.jpg",
     category: "commercial",
   },
-]
+];
 
 export function getServiceById(id: string): Service | undefined {
-  return services.find((service) => service.id === id)
+  return services.find((service) => service.id === id);
 }
 
-export function getServicesByCategory(category: Service["category"]): Service[] {
-  return services.filter((service) => service.category === category)
+export function getServicesByCategory(
+  category: Service["category"]
+): Service[] {
+  return services.filter((service) => service.category === category);
 }
 
 export function formatPrice(amount: number): string {
@@ -207,5 +209,5 @@ export function formatPrice(amount: number): string {
     currency: "NGN",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(amount)
+  }).format(amount);
 }
