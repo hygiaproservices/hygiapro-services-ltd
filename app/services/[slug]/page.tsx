@@ -1,13 +1,10 @@
+import { AddToCartButton } from "@/components/services/add-to-cart-button";
+import { Button } from "@/components/ui/button";
+import { formatPrice, getServiceById, services } from "@/lib/services-data";
+import { ArrowLeft, ArrowRight, Check, Clock, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Check, Clock, MapPin } from "lucide-react";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { WhatsAppButton } from "@/components/layout/whatsapp-button";
-import { Button } from "@/components/ui/button";
-import { services, getServiceById, formatPrice } from "@/lib/services-data";
-import { AddToCartButton } from "@/components/services/add-to-cart-button";
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>;

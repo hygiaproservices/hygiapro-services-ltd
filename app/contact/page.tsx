@@ -1,9 +1,6 @@
-import type { Metadata } from "next";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { ContactForm } from "@/components/contact/contact-form";
-import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact Us | Hygiapro",
@@ -11,7 +8,7 @@ export const metadata: Metadata = {
     "Get in touch with Hygiapro. We're here to answer your questions and help you book your cleaning service.",
 };
 
-const WHATSAPP_NUMBER = "2348000000000";
+const WHATSAPP_NUMBER = "2349064O422579";
 const WHATSAPP_MESSAGE = encodeURIComponent(
   "Hello, I'd like to inquire about your cleaning services."
 );
@@ -20,14 +17,14 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+234 800 000 0000",
-    href: "tel:+2348000000000",
+    value: "+2348160934030",
+    href: "tel:+2348160934030",
   },
   {
     icon: Mail,
     label: "Email",
-    value: "hello@hygiapro.com",
-    href: "mailto:hello@hygiapro.com",
+    value: "admin@hygiaproservices.com",
+    href: "mailto:admin@hygiaproservices.com",
   },
   {
     icon: MapPin,
