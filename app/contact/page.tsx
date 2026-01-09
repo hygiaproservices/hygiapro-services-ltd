@@ -29,7 +29,7 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Office",
-    value: "Victoria Island, Lagos, Nigeria",
+    value: "ECWA Church, Gwarandok ZONE 1, Jos Plateau, Nigeria",
     href: null,
   },
   {
@@ -137,7 +137,7 @@ export default function ContactPage() {
         <section className="border-t border-border">
           <div className="h-[400px] w-full bg-muted">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.7286354095847!2d3.4216356!3d6.4280556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf53a7f5d4e8b%3A0x5b3b0db5d4c9a0b8!2sVictoria%20Island%2C%20Lagos!5e0!3m2!1sen!2sng!4v1699999999999!5m2!1sen!2sng"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.66199958154!2d8.89154857507654!3d9.878698090220604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10537388d5be7901%3A0x516e84ad5cc78df6!2sECWA%20Church%2C%20Gwarandok.%20ZONE%201!5e0!3m2!1sen!2sng!4v1767969267958!5m2!1sen!2sng"
               width="100%"
               height="100%"
               style={{ border: 0 }}
