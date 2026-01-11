@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "premium cleaning",
     "luxury cleaning service",
     "professional cleaning",
-    "home cleaning Lagos",
+    "home cleaning Jos / Abuja",
     "office cleaning Nigeria",
   ],
 };

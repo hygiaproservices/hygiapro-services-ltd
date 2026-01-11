@@ -63,7 +63,7 @@ export default function AboutPage() {
                   reliable cleaning services that give people back their time
                   and peace of mind. What started as a small team serving local
                   homes has grown into a trusted cleaning company serving
-                  hundreds of clients across Lagos.
+                  hundreds of clients across Jos / Abuja.
                 </p>
               </div>
               <div className="relative">
@@ -186,10 +186,10 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    At Hygiapro, quality isn't just a buzzword — it's our
-                    standard. Every member of our team undergoes rigorous
-                    training to ensure they meet our high standards before they
-                    ever step into your space.
+                    At Hygiapro, quality isn't just a buzzword; it's our
+                    standard. Every member of our team undergoes training to
+                    ensure they meet our high standards before they ever step
+                    into your space.
                   </p>
                   <p>
                     We use only premium, eco-friendly cleaning products that are
