@@ -3,10 +3,13 @@ import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
 const footerLinks = {
   services: [
-    { href: "/services/residential-cleaning", label: "Residential Cleaning" },
+    { href: "/services/basic-cleaning", label: "Residential Cleaning" },
     { href: "/services/office-commercial", label: "Office Cleaning" },
     { href: "/services/post-construction", label: "Post-Construction" },
-    { href: "/services/airbnb-shortlet", label: "Airbnb & Short-let" },
+    {
+      href: "/services/combo-cleaning-fumigation",
+      label: "Cleaning + Fumigation Combo",
+    },
   ],
   company: [
     { href: "/about", label: "About Us" },
