@@ -19,10 +19,16 @@ const _playfairDisplay = Playfair_Display({
 });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.hygiaproservices.com";
+const siteName = "Hygiapro";
+const siteDescription =
+  "Experience the art of cleanliness. Professional cleaning services for discerning homes and businesses. Book online, pay securely.";
+
 export const metadata: Metadata = {
-  title: "Hygiapro | Professional Cleaning Services",
-  description:
-    "Experience the art of cleanliness. Professional cleaning services for discerning homes and businesses. Book online, pay securely.",
+  metadataBase: new URL(siteUrl),
+  title: `${siteName} | Professional Cleaning Services`,
+  description: siteDescription,
   keywords: [
     "premium cleaning",
     "luxury cleaning service",
@@ -30,6 +36,42 @@ export const metadata: Metadata = {
     "home cleaning Jos / Abuja",
     "office cleaning Nigeria",
   ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    title: `${siteName} | Professional Cleaning Services`,
+    description: siteDescription,
+    siteName,
+    images: [
+      {
+        url: "/icon-dark-32x32.png",
+        width: 32,
+        height: 32,
+        alt: `${siteName} logo`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: `${siteName} | Professional Cleaning Services`,
+    description: siteDescription,
+    images: ["/icon-dark-32x32.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: [
+      { url: "/icon-light-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-dark-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
