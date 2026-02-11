@@ -12,9 +12,7 @@ interface ServicePricingSectionProps {
   service: Service;
 }
 
-export function ServicePricingSection({
-  service,
-}: ServicePricingSectionProps) {
+export function ServicePricingSection({ service }: ServicePricingSectionProps) {
   const cities = service.pricing;
   const defaultCity = cities[0]?.city ?? "Jos";
 
@@ -23,14 +21,14 @@ export function ServicePricingSection({
     cities.find((pricing) => pricing.city === selectedCity) ?? cities[0];
 
   const [selectedSize, setSelectedSize] = useState(
-    selectedCityPricing?.tiers[0]?.label ?? ""
+    selectedCityPricing?.tiers[0]?.label ?? "",
   );
 
   const selectedTier = useMemo(
     () =>
       selectedCityPricing?.tiers.find((tier) => tier.label === selectedSize) ??
       selectedCityPricing?.tiers[0],
-    [selectedCityPricing, selectedSize]
+    [selectedCityPricing, selectedSize],
   );
 
   const [selectedPrice, setSelectedPrice] = useState(selectedTier?.min ?? 0);
@@ -49,10 +47,12 @@ export function ServicePricingSection({
 
   const isInspectionOnly = Boolean(
     selectedCityPricing &&
-      selectedCityPricing.tiers.every((tier) => tier.min === 0 && tier.max === 0)
+    selectedCityPricing.tiers.every((tier) => tier.min === 0 && tier.max === 0),
   );
   const isFixedPrice = Boolean(
-    selectedTier && selectedTier.min === selectedTier.max && selectedTier.max > 0
+    selectedTier &&
+    selectedTier.min === selectedTier.max &&
+    selectedTier.max > 0,
   );
 
   const pricingSelection: CartPricingSelection | undefined =
@@ -76,9 +76,7 @@ export function ServicePricingSection({
         </p>
         <div className="grid gap-6 lg:grid-cols-2">
           {service.pricing.map((pricing) => (
-            <div
-              key={pricing.city}
-              className="border border-border bg-card">
+            <div key={pricing.city} className="border border-border bg-card">
               <div className="border-b border-border p-4">
                 <p className="text-sm font-semibold text-foreground">
                   {pricing.city}
@@ -126,7 +124,9 @@ export function ServicePricingSection({
             <select
               className="mt-2 w-full border border-border bg-background px-3 py-2 text-sm text-foreground"
               value={selectedCity}
-              onChange={(event) => setSelectedCity(event.target.value)}>
+              onChange={(event) =>
+                setSelectedCity(event.target?.value as "Jos" | "Abuja")
+              }>
               {cities.map((pricing) => (
                 <option key={pricing.city} value={pricing.city}>
                   {pricing.city}
@@ -154,7 +154,8 @@ export function ServicePricingSection({
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">Estimated range</span>
               <span className="font-medium text-foreground">
-                {formatPrice(selectedTier.min)} - {formatPrice(selectedTier.max)}
+                {formatPrice(selectedTier.min)} -{" "}
+                {formatPrice(selectedTier.max)}
               </span>
             </div>
             <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center">
