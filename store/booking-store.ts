@@ -2,9 +2,21 @@ import { create } from "zustand"
 import { persist } from "zustand/middleware"
 import type { Service } from "@/lib/services-data"
 
+export interface CartPricingSelection {
+  city: string
+  size: string
+  min: number
+  max: number
+  price: number
+  unit: string
+  note?: string
+}
+
 export interface CartItem {
+  id: string
   service: Service
   quantity: number
+  pricing?: CartPricingSelection
 }
 
 export interface CustomerDetails {
@@ -26,9 +38,9 @@ interface BookingState {
   customerDetails: CustomerDetails | null
 
   // Cart actions
-  addToCart: (service: Service) => void
-  removeFromCart: (serviceId: string) => void
-  updateQuantity: (serviceId: string, quantity: number) => void
+  addToCart: (service: Service, pricing?: CartPricingSelection) => void
+  removeFromCart: (cartItemId: string) => void
+  updateQuantity: (cartItemId: string, quantity: number) => void
   clearCart: () => void
   getCartTotal: () => number
   getCartItemCount: () => number
@@ -46,40 +58,48 @@ export const useBookingStore = create<BookingState>()(
       bookingSlot: null,
       customerDetails: null,
 
-      addToCart: (service) => {
+      addToCart: (service, pricing) => {
         const { cart } = get()
-        const existingItem = cart.find((item) => item.service.id === service.id)
+        const optionKey = pricing ? `${pricing.city}-${pricing.size}` : "default"
+        const itemId = `${service.id}-${optionKey}`
+        const existingItem = cart.find((item) => item.id === itemId)
 
         if (existingItem) {
           set({
             cart: cart.map((item) =>
-              item.service.id === service.id ? { ...item, quantity: item.quantity + 1 } : item,
+              item.id === itemId
+                ? { ...item, quantity: item.quantity + 1, pricing: pricing ?? item.pricing }
+                : item,
             ),
           })
         } else {
-          set({ cart: [...cart, { service, quantity: 1 }] })
+          set({ cart: [...cart, { id: itemId, service, quantity: 1, pricing }] })
         }
       },
 
-      removeFromCart: (serviceId) => {
-        set({ cart: get().cart.filter((item) => item.service.id !== serviceId) })
+      removeFromCart: (cartItemId) => {
+        set({ cart: get().cart.filter((item) => item.id !== cartItemId) })
       },
 
-      updateQuantity: (serviceId, quantity) => {
+      updateQuantity: (cartItemId, quantity) => {
         if (quantity <= 0) {
-          get().removeFromCart(serviceId)
+          get().removeFromCart(cartItemId)
           return
         }
         set({
-          cart: get().cart.map((item) => (item.service.id === serviceId ? { ...item, quantity } : item)),
+          cart: get().cart.map((item) =>
+            item.id === cartItemId ? { ...item, quantity } : item,
+          ),
         })
       },
 
       clearCart: () => set({ cart: [] }),
 
-      getCartTotal: () => {
-        return get().cart.reduce((total, item) => total + item.service.startingPrice * item.quantity, 0)
-      },
+      getCartTotal: () =>
+        get().cart.reduce((total, item) => {
+          const price = item.pricing?.price ?? item.service.startingPrice
+          return total + price * item.quantity
+        }, 0),
 
       getCartItemCount: () => {
         return get().cart.reduce((count, item) => count + item.quantity, 0)

@@ -1,4 +1,5 @@
-import { AddToCartButton } from "@/components/services/add-to-cart-button";
+import { ServicePricingSection } from "@/components/services/service-pricing-section";
+import { ServiceReviews } from "@/components/services/service-reviews";
 import { Button } from "@/components/ui/button";
 import { formatPrice, getServiceById, services } from "@/lib/services-data";
 import { ArrowLeft, ArrowRight, Check, Clock, MapPin } from "lucide-react";
@@ -90,34 +91,13 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 <h1 className="mb-6 font-serif text-3xl font-medium tracking-tight text-foreground md:text-4xl lg:text-5xl">
                   {service.name}
                 </h1>
-                <p className="mb-8 text-base leading-relaxed text-muted-foreground">
-                  {service.description}
-                </p>
-
-                {/* Price */}
-                <div className="mb-8 border-y border-border py-6">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    Starting From
-                  </p>
-                  <p className="mt-2 font-serif text-4xl font-medium text-foreground">
-                    {formatPrice(service.startingPrice)}
-                  </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {service.priceUnit}
+                <div className="mb-8">
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    {service.description}
                   </p>
                 </div>
 
-                {/* CTA */}
-                <div className="flex flex-col gap-4 sm:flex-row">
-                  <AddToCartButton service={service} />
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="gap-2 rounded-none bg-transparent px-8">
-                    <Link href="/contact">Get Custom Quote</Link>
-                  </Button>
-                </div>
+                <ServicePricingSection service={service} />
 
                 {/* Quick Info */}
                 <div className="mt-8 flex flex-wrap gap-6 text-sm text-muted-foreground">
@@ -168,6 +148,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </div>
           </div>
         </section>
+
+        <ServiceReviews serviceId={service.id} serviceName={service.name} />
 
         {/* Related Services */}
         {relatedServices.length > 0 && (
