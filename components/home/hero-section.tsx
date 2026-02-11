@@ -81,7 +81,7 @@ export function HeroSection() {
             className="mt-16 flex gap-12 border-t border-border pt-8">
             {[
               { value: "50+", label: "Happy Clients" },
-              { value: "80%", label: "Satisfaction Rate" },
+              { value: "90%", label: "Satisfaction Rate" },
               { value: "2+", label: "Years Experience" },
             ].map((stat, index) => (
               <motion.div

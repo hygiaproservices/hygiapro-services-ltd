@@ -1,3 +1,16 @@
+export interface PricingTier {
+  label: string;
+  min: number;
+  max: number;
+}
+
+export interface CityPricing {
+  city: "Jos" | "Abuja";
+  unit: string;
+  tiers: PricingTier[];
+  note?: string;
+}
+
 export interface Service {
   id: string;
   name: string;
@@ -8,6 +21,7 @@ export interface Service {
   priceUnit: string;
   image: string;
   category: "residential" | "commercial" | "specialized";
+  pricing: CityPricing[];
 }
 
 export const services: Service[] = [
@@ -16,7 +30,7 @@ export const services: Service[] = [
     name: "Basic Cleaning",
     shortDescription: "Sweeping, mopping, dusting, kitchen & toilet cleaning",
     description:
-      "A reliable everyday clean for apartments and homes. Pricing guide: Jos 1 bedroom NGN 15,000-20,000; 2-3 bedroom NGN 20,000-30,000. Abuja 1 bedroom NGN 25,000-35,000; 2-3 bedroom NGN 40,000-60,000.",
+      "A reliable everyday clean for apartments and homes with a focus on the essentials.",
     includes: [
       "Sweeping and mopping floors",
       "Dusting all surfaces and furniture",
@@ -24,17 +38,35 @@ export const services: Service[] = [
       "Toilet and bathroom cleaning",
       "Trash removal",
     ],
-    startingPrice: 15000,
-    priceUnit: "per visit (pricing varies by city and size)",
+    startingPrice: 25000,
+    priceUnit: "per visit",
     image: "/residential-cleaning.jpg",
     category: "residential",
+    pricing: [
+      {
+        city: "Jos",
+        unit: "per visit",
+        tiers: [
+          { label: "2-3 bedroom", min: 25000, max: 35000 },
+        ],
+        note: "Prices vary by size, severity, and location.",
+      },
+      {
+        city: "Abuja",
+        unit: "per visit",
+        tiers: [
+          { label: "2-3 bedroom", min: 25000, max: 35000 },
+        ],
+        note: "Prices vary by size, severity, and location.",
+      },
+    ],
   },
   {
     id: "deep-cleaning",
     name: "Deep Cleaning",
     shortDescription: "Tiles, windows, kitchen cabinets, bathrooms",
     description:
-      "Intensive cleaning for hard-to-reach areas and stubborn grime. Pricing guide: Jos 2-3 bedroom NGN 30,000-50,000. Abuja 2-3 bedroom NGN 60,000-90,000.",
+      "Intensive cleaning for hard-to-reach areas and stubborn grime.",
     includes: [
       "Tile scrubbing and grout refresh",
       "Window and frame cleaning",
@@ -43,17 +75,31 @@ export const services: Service[] = [
       "Appliance degreasing",
       "High-touch surface disinfection",
     ],
-    startingPrice: 30000,
-    priceUnit: "per visit (2-3 bedroom)",
+    startingPrice: 40000,
+    priceUnit: "per visit",
     image: "/professional-cleaning-team-in-modern-home--bright-.jpg",
     category: "residential",
+    pricing: [
+      {
+        city: "Jos",
+        unit: "per visit",
+        tiers: [{ label: "2-3 bedroom", min: 40000, max: 55000 }],
+        note: "Prices vary by size, severity, and location.",
+      },
+      {
+        city: "Abuja",
+        unit: "per visit",
+        tiers: [{ label: "2-3 bedroom", min: 40000, max: 55000 }],
+        note: "Prices vary by size, severity, and location.",
+      },
+    ],
   },
   {
     id: "post-construction",
     name: "Post-Construction Cleaning",
     shortDescription: "Deep cleaning after renovation or construction",
     description:
-      "Clear out dust, debris, and residue after renovations. Pricing guide: Jos 2-3 bedroom NGN 80,000-150,000; duplex NGN 150,000-250,000. Abuja 2-3 bedroom NGN 180,000-350,000; duplex NGN 300,000-600,000+. Final price after inspection.",
+      "Clear out dust, debris, and residue after renovations to make the space move-in ready.",
     includes: [
       "Removal of construction dust and debris",
       "Window and frame cleaning",
@@ -63,17 +109,31 @@ export const services: Service[] = [
       "Air vent and duct cleaning",
       "Final inspection and touch-ups",
     ],
-    startingPrice: 80000,
-    priceUnit: "per project (inspection required)",
+    startingPrice: 0,
+    priceUnit: "per project",
     image: "/post-construction.jpg",
     category: "specialized",
+    pricing: [
+      {
+        city: "Jos",
+        unit: "per project",
+        tiers: [{ label: "Inspection required", min: 0, max: 0 }],
+        note: "Price determined after inspection, size, and city.",
+      },
+      {
+        city: "Abuja",
+        unit: "per project",
+        tiers: [{ label: "Inspection required", min: 0, max: 0 }],
+        note: "Price determined after inspection, size, and city.",
+      },
+    ],
   },
   {
     id: "fumigation-pest-control",
     name: "Fumigation & Pest Control",
     shortDescription: "Residential and commercial pest treatment",
     description:
-      "Comprehensive fumigation for homes, offices, and schools. Residential pricing: Jos 1-2 bedroom NGN 15,000-25,000; 3 bedroom NGN 25,000-40,000. Abuja 1-2 bedroom NGN 30,000-50,000; 3 bedroom NGN 50,000-80,000. Offices/Schools: Jos NGN 40,000-150,000; Abuja NGN 120,000-400,000+ (depends on size and infestation level).",
+      "Comprehensive fumigation for homes, offices, and schools to keep spaces pest-free.",
     includes: [
       "Inspection and assessment",
       "Targeted treatment plan",
@@ -82,34 +142,62 @@ export const services: Service[] = [
       "Post-treatment guidance",
       "Follow-up support if needed",
     ],
-    startingPrice: 15000,
-    priceUnit: "per treatment (pricing varies by size)",
+    startingPrice: 30000,
+    priceUnit: "per treatment",
     image: "/eco-friendly-cleaning-products--green-bottles-and.jpg",
     category: "specialized",
+    pricing: [
+      {
+        city: "Jos",
+        unit: "per treatment",
+        tiers: [{ label: "Standard", min: 30000, max: 30000 }],
+        note: "Price varies by size, location, and severity.",
+      },
+      {
+        city: "Abuja",
+        unit: "per treatment",
+        tiers: [{ label: "Standard", min: 30000, max: 30000 }],
+        note: "Price varies by size, location, and severity.",
+      },
+    ],
   },
   {
     id: "combo-cleaning-fumigation",
     name: "Cleaning + Fumigation Combo",
     shortDescription: "Bundle deal for faster results and savings",
     description:
-      "Bundle basic cleaning with fumigation for faster close and better value. Pricing guide: Jos 2-3 bedroom NGN 35,000-55,000. Abuja 2-3 bedroom NGN 70,000-120,000.",
+      "Bundle basic cleaning with fumigation for faster close and better value.",
     includes: [
       "Full basic cleaning",
       "Targeted fumigation treatment",
       "Single-visit coordination",
       "Post-service checklist",
     ],
-    startingPrice: 35000,
-    priceUnit: "per bundle (2-3 bedroom)",
+    startingPrice: 45000,
+    priceUnit: "per bundle",
     image: "/cleaning-team-group-photo--professional-uniformed.jpg",
     category: "residential",
+    pricing: [
+      {
+        city: "Jos",
+        unit: "per bundle",
+        tiers: [{ label: "2-3 bedroom", min: 45000, max: 45000 }],
+        note: "Prices vary by size, severity, and location.",
+      },
+      {
+        city: "Abuja",
+        unit: "per bundle",
+        tiers: [{ label: "2-3 bedroom", min: 45000, max: 45000 }],
+        note: "Prices vary by size, severity, and location.",
+      },
+    ],
   },
   {
     id: "office-monthly-contracts",
     name: "Office Cleaning (Monthly Contracts)",
     shortDescription: "Scheduled cleaning for small and medium offices",
     description:
-      "Consistent office care with flexible schedules. Pricing guide: Jos small office NGN 60,000-120,000; medium office NGN 120,000-200,000. Abuja small office NGN 150,000-300,000; medium office NGN 300,000-500,000+.",
+      "Consistent office care with flexible schedules and reliable routines.",
     includes: [
       "Workstation and desk cleaning",
       "Floor vacuuming and mopping",
@@ -118,17 +206,31 @@ export const services: Service[] = [
       "Trash and recycling removal",
       "Reception and common area cleaning",
     ],
-    startingPrice: 60000,
-    priceUnit: "per month (pricing varies by size/city)",
+    startingPrice: 0,
+    priceUnit: "per month",
     image: "/office-cleaning.jpg",
     category: "commercial",
+    pricing: [
+      {
+        city: "Jos",
+        unit: "per month",
+        tiers: [{ label: "Inspection required", min: 0, max: 0 }],
+        note: "Price determined after inspection.",
+      },
+      {
+        city: "Abuja",
+        unit: "per month",
+        tiers: [{ label: "Inspection required", min: 0, max: 0 }],
+        note: "Price determined after inspection.",
+      },
+    ],
   },
   {
     id: "school-cleaning",
     name: "School Cleaning",
     shortDescription: "Safe and thorough cleaning for educational institutions",
     description:
-      "Create a healthy learning environment with child-safe products. Pricing guide: Jos NGN 80,000-200,000 monthly. Abuja pricing available on request.",
+      "Create a healthy learning environment with child-safe products and high-touch disinfection.",
     includes: [
       "Classroom cleaning and sanitization",
       "Restroom deep cleaning",
@@ -138,10 +240,24 @@ export const services: Service[] = [
       "Playground equipment sanitization",
       "Window cleaning",
     ],
-    startingPrice: 80000,
-    priceUnit: "per month (pricing varies by size/city)",
+    startingPrice: 0,
+    priceUnit: "per month",
     image: "/school-cleaning.jpg",
     category: "commercial",
+    pricing: [
+      {
+        city: "Jos",
+        unit: "per month",
+        tiers: [{ label: "Inspection required", min: 0, max: 0 }],
+        note: "Price determined after inspection.",
+      },
+      {
+        city: "Abuja",
+        unit: "per month",
+        tiers: [{ label: "Inspection required", min: 0, max: 0 }],
+        note: "Price determined after inspection.",
+      },
+    ],
   },
 ];
 

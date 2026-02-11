@@ -40,7 +40,7 @@ const stats = [
   { value: "50+", label: "Happy Clients" },
   { value: "2+", label: "Years Experience" },
   { value: "20+", label: "Trained Staff" },
-  { value: "80%", label: "Satisfaction Rate" },
+  { value: "90%", label: "Satisfaction Rate" },
 ];
 
 export default function AboutPage() {
@@ -67,7 +67,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="relative">
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="aspect-4/3 overflow-hidden">
                   <img
                     src="/cleaning-team-group-photo--professional-uniformed.jpg"
                     alt="Hygiapro cleaning team"

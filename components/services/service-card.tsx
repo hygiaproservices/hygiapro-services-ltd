@@ -1,25 +1,18 @@
 "use client"
 
 import Link from "next/link"
-import { Check, Plus, Minus, ArrowUpRight } from "lucide-react"
+import { Check, ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useBookingStore } from "@/store/booking-store"
 import { formatPrice, type Service } from "@/lib/services-data"
-import { toast } from "sonner"
 
 interface ServiceCardProps {
   service: Service
 }
 
 export function ServiceCard({ service }: ServiceCardProps) {
-  const { cart, addToCart, updateQuantity } = useBookingStore()
-  const cartItem = cart.find((item) => item.service.id === service.id)
-  const isInCart = !!cartItem
-
-  const handleAddToCart = () => {
-    addToCart(service)
-    toast.success(`${service.name} added to booking`)
-  }
+  const isInspectionOnly = service.pricing.every((pricing) =>
+    pricing.tiers.every((tier) => tier.min === 0 && tier.max === 0)
+  );
 
   return (
     <div className="group flex flex-col border border-border bg-card transition-colors hover:border-foreground/20">
@@ -71,36 +64,27 @@ export function ServiceCard({ service }: ServiceCardProps) {
         {/* Price & Action */}
         <div className="flex items-center justify-between border-t border-border pt-4">
           <div>
-            <p className="font-serif text-2xl font-medium text-foreground">{formatPrice(service.startingPrice)}</p>
-            <p className="text-xs text-muted-foreground">{service.priceUnit}</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">From</p>
+            {isInspectionOnly ? (
+              <>
+                <p className="font-serif text-xl font-medium text-foreground">
+                  Inspection required
+                </p>
+                <p className="text-xs text-muted-foreground">Contact for quote</p>
+              </>
+            ) : (
+              <>
+                <p className="font-serif text-2xl font-medium text-foreground">
+                  {formatPrice(service.startingPrice)}
+                </p>
+                <p className="text-xs text-muted-foreground">{service.priceUnit}</p>
+              </>
+            )}
           </div>
 
-          {isInCart ? (
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-9 w-9 rounded-none bg-transparent"
-                onClick={() => updateQuantity(service.id, cartItem.quantity - 1)}
-              >
-                <Minus className="h-4 w-4" />
-              </Button>
-              <span className="w-8 text-center font-medium">{cartItem.quantity}</span>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-9 w-9 rounded-none bg-transparent"
-                onClick={() => updateQuantity(service.id, cartItem.quantity + 1)}
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
-            </div>
-          ) : (
-            <Button onClick={handleAddToCart} className="gap-2 rounded-none">
-              <Plus className="h-4 w-4" />
-              Add
-            </Button>
-          )}
+          <Button asChild className="gap-2 rounded-none">
+            <Link href={`/services/${service.id}`}>Select Options</Link>
+          </Button>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 const testimonials = [
   {
     name: "Adaeze Okonkwo",
-    role: "Homeowner, Lekki",
+    role: "Homeowner, Abuja",
     content:
       "Hygiapro has redefined what I expect from a cleaning service. The attention to detail is remarkable—every corner, every surface is treated with care. It's not just cleaning; it's a transformation.",
     image: "/professional-african-woman-portrait-elegant.jpg",

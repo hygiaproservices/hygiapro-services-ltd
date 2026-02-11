@@ -71,9 +71,11 @@ export function StepPayment({ onBack }: StepPaymentProps) {
           bookingDate: bookingSlot.date,
           bookingTime: bookingSlot.time,
           services: cart.map((item) => ({
-            name: item.service.name,
+            name: item.pricing
+              ? `${item.service.name} (${item.pricing.city} - ${item.pricing.size})`
+              : item.service.name,
             quantity: item.quantity,
-            price: item.service.startingPrice,
+            price: item.pricing?.price ?? item.service.startingPrice,
           })),
         },
       });
@@ -107,19 +109,24 @@ export function StepPayment({ onBack }: StepPaymentProps) {
             <div className="divide-y divide-border">
               {cart.map((item) => (
                 <div
-                  key={item.service.id}
+                  key={item.id}
                   className="flex items-center justify-between p-4">
                   <div>
                     <p className="font-medium text-foreground">
                       {item.service.name}
                     </p>
+                    {item.pricing && (
+                      <p className="text-xs text-muted-foreground">
+                        {item.pricing.city} · {item.pricing.size}
+                      </p>
+                    )}
                     <p className="text-sm text-muted-foreground">
-                      {formatPrice(item.service.startingPrice)} x{" "}
+                      {formatPrice(item.pricing?.price ?? item.service.startingPrice)} x{" "}
                       {item.quantity}
                     </p>
                   </div>
                   <p className="font-semibold text-foreground">
-                    {formatPrice(item.service.startingPrice * item.quantity)}
+                    {formatPrice((item.pricing?.price ?? item.service.startingPrice) * item.quantity)}
                   </p>
                 </div>
               ))}

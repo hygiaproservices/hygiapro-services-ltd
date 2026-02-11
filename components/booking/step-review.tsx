@@ -43,7 +43,7 @@ export function StepReview({ onNext }: StepReviewProps) {
         </div>
         <div className="divide-y divide-border">
           {cart.map((item) => (
-            <div key={item.service.id} className="flex items-center gap-4 p-4 md:p-6">
+            <div key={item.id} className="flex items-center gap-4 p-4 md:p-6">
               <div className="h-16 w-16 shrink-0 overflow-hidden bg-muted md:h-20 md:w-20">
                 <img
                   src={item.service.image || "/placeholder.svg"}
@@ -54,32 +54,38 @@ export function StepReview({ onNext }: StepReviewProps) {
               <div className="flex-1">
                 <h4 className="font-semibold text-foreground">{item.service.name}</h4>
                 <p className="hidden text-sm text-muted-foreground md:block">{item.service.shortDescription}</p>
+                {item.pricing && (
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {item.pricing.city} · {item.pricing.size}
+                  </p>
+                )}
                 <p className="mt-1 text-sm font-medium text-foreground">
-                  {formatPrice(item.service.startingPrice)} {item.service.priceUnit}
+                  {formatPrice(item.pricing?.price ?? item.service.startingPrice)}{" "}
+                  {item.pricing?.unit ?? item.service.priceUnit}
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="flex items-center border border-border">
                   <button
                     className="px-3 py-2 text-muted-foreground transition-colors hover:text-foreground"
-                    onClick={() => updateQuantity(item.service.id, item.quantity - 1)}
+                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
                   >
                     -
                   </button>
                   <span className="w-8 text-center font-medium">{item.quantity}</span>
                   <button
                     className="px-3 py-2 text-muted-foreground transition-colors hover:text-foreground"
-                    onClick={() => updateQuantity(item.service.id, item.quantity + 1)}
+                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
                   >
                     +
                   </button>
                 </div>
                 <p className="hidden w-24 text-right font-semibold text-foreground md:block">
-                  {formatPrice(item.service.startingPrice * item.quantity)}
+                  {formatPrice((item.pricing?.price ?? item.service.startingPrice) * item.quantity)}
                 </p>
                 <button
                   className="text-muted-foreground transition-colors hover:text-destructive"
-                  onClick={() => removeFromCart(item.service.id)}
+                  onClick={() => removeFromCart(item.id)}
                 >
                   <Trash2 className="h-4 w-4" />
                 </button>

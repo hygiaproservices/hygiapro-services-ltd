@@ -9,13 +9,13 @@ const services = [
     number: "01",
     title: "Residential Cleaning",
     description: "Complete home cleaning for apartments and houses with meticulous attention to detail.",
-    href: "/services/residential-cleaning",
+    href: "/services/basic-cleaning",
   },
   {
     number: "02",
     title: "Office & Commercial",
     description: "Professional cleaning for offices and businesses that elevates your workspace.",
-    href: "/services/office-commercial",
+    href: "/services/office-monthly-contracts",
   },
   {
     number: "03",

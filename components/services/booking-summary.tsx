@@ -38,18 +38,25 @@ export function BookingSummary() {
       {/* Items */}
       <div className="divide-y divide-border">
         {cart.map((item) => (
-          <div key={item.service.id} className="flex items-start justify-between gap-3 p-4">
+          <div key={item.id} className="flex items-start justify-between gap-3 p-4">
             <div className="flex-1">
               <p className="font-medium text-foreground">{item.service.name}</p>
+              {item.pricing && (
+                <p className="text-xs text-muted-foreground">
+                  {item.pricing.city} · {item.pricing.size}
+                </p>
+              )}
               <p className="text-sm text-muted-foreground">
-                {formatPrice(item.service.startingPrice)} x {item.quantity}
+                {formatPrice(item.pricing?.price ?? item.service.startingPrice)} x {item.quantity}
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <p className="font-semibold text-foreground">{formatPrice(item.service.startingPrice * item.quantity)}</p>
+              <p className="font-semibold text-foreground">
+                {formatPrice((item.pricing?.price ?? item.service.startingPrice) * item.quantity)}
+              </p>
               <button
                 className="text-muted-foreground transition-colors hover:text-destructive"
-                onClick={() => removeFromCart(item.service.id)}
+                onClick={() => removeFromCart(item.id)}
               >
                 <Trash2 className="h-4 w-4" />
               </button>
